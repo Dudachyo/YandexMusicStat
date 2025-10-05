@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'Yandex Sans Display';
+    src: url('../font/YandexSansDisplay-Regular.eot');
+    src: local('Yandex Sans Display Regular'), local('YandexSansDisplay-Regular'),
+        url('../font/YandexSansDisplay-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../font/YandexSansDisplay-Regular.woff2') format('woff2'),
+        url('../font/YandexSansDisplay-Regular.woff') format('woff'),
+        url('../font/YandexSansDisplay-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.title{
+    font-size: 50px;
+}
+body{
+    font-family: "Yandex Sans Display";
+    padding-left: 136px;
+    padding-right: 136px;
+    background-color: #0d0d0d;
+    color: white;
+}
+.img_logo {
+    width: 63px;
+    height: 63px;
+}
+.nav_cont{
+    display: flex;
+    align-items: center; /* Выравнивание по вертикали */
+    gap: 15px; /* Расстояние между элементами */
+}
+.div_content{
+    text-align: center;
+}
+
+.p-token {
+    margin: 20px 0
+}
+.input-token{
+    font-family: "Yandex Sans Display";
+    background-color: #0d0d0d; /* Полупрозрачный белый фон */
+    color: white; /* Белый текст */
+    border: none; /* Убираем все границы */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3); /* Полоса снизу */
+    outline: none; /* Убираем outline при фокусе */
+    padding: 10px 0; /* Отступы для красоты */
+    font-size: 16px;
+    width: 80%; /* На всю ширину */
+}
+.input-button{
+    background-color: #fed42b;
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    height: 55px;
+    color: #0d0d0d;
+    font-size: 20px;
+    font-family: "Yandex Sans Display";
+}
+.input-button:hover{
+    background-color: #ffa400;
+}
+
+.title-track .artist-track {
+    font-size: 10px;
+    margin: 0;
+}
+.mar {
+    margin: 0;
+}
+.track-card {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 10px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+}
+ .tracks-container {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 20px;
+     justify-content: flex-start;
+ }

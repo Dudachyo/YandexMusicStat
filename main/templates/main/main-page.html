@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="../../static/main/css/style-main-page.css"/>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'main/css/style-main-page.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="nav_cont">
+            <img src="{% static 'main/img/img.png' %}" alt="YandexMusic" class="img_logo">
+            <p class="title">My Yandex Music Stat</p>
+        </nav>
+    </header>
+    <div class="div_content">
+        <form method="post">
+            {% csrf_token %}
+            <p class="p-token">
+                <input type="text" name="token" id="token" class="input-token" placeholder="Введите ТОКЕН" >
+            </p>
+            <p class="p-token">
+                <button type="submit" class="input-button">Отправить</button>
+            </p>
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+        </form>
+    </div>
+    <div class="tracks-container">
+        {% for i in track_list %}
+            <div class="track-card">
+            <img src="{{ i.image }}">
+            <p class="mar">{{ i.title }}</p>
+            <p class="mar">{{ i.artist }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
