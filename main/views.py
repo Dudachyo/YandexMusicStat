@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from yandex_music import Client
 
@@ -11,12 +12,13 @@ def main_page_view(request):
 
             client = Client(token).init()
             tracks = client.users_likes_tracks()
-
             track_list = []
             for track_obj in tracks[:5]:  # Get first 5 liked tracks
+                id = track_obj.id
                 track = track_obj.fetch_track()
                 title = track.title
                 artist = track.artists[0].name if track.artists else "Unknown Artist"
+                url = "https://music.yandex.ru/track/" + str(id)
 
                 img = None
                 if track.cover_uri:
@@ -25,7 +27,9 @@ def main_page_view(request):
                 track_list.append({
                     'title': title,
                     'artist': artist,
-                    'image': img
+                    'image': img,
+                    'id' : id,
+                    'url' : url
                 })
 
             context = {"track_list": track_list}
@@ -37,3 +41,7 @@ def main_page_view(request):
 
     else:
         return render(request, 'main/main-page.html')
+
+def set_cookie(request , token):
+    request.set_cookie('token', token)
+    return request

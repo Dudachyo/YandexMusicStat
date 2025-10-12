@@ -74,9 +74,18 @@ body{
     width: 200px;
     text-align: center;
 }
- .tracks-container {
+.tracks-container {
      display: flex;
      flex-wrap: wrap;
      gap: 20px;
      justify-content: flex-start;
- }
+}
+
+a:visited {
+  color: White;
+  text-decoration: none;
+}
+a:link {
+  color: White;
+  text-decoration: none;
+}

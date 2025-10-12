@@ -30,11 +30,11 @@
     </div>
     <div class="tracks-container">
         {% for i in track_list %}
-            <div class="track-card">
+            <a href="{{ i.url }}" target="_blank"><div class="track-card">
             <img src="{{ i.image }}">
             <p class="mar">{{ i.title }}</p>
             <p class="mar">{{ i.artist }}</p>
-            </div>
+            </div></a>
         {% endfor %}
     </div>
 </body>
