@@ -20,7 +20,11 @@ def main_page_view(request):
             client = Client(token).init()
 
             # Создаёт context для 5-ти любимых песен
-            context = create_like_playlist(client)
+            liked_context = create_like_playlist(client)
+
+            chart_context = create_chart_playlist(client)
+
+            context = liked_context | chart_context
 
             response = render(request, 'main/main-page.html', context=context)
             response.set_cookie('token', token , max_age=30*24*60*60)
@@ -34,7 +38,11 @@ def main_page_view(request):
         if saved_token:
             client = Client(saved_token).init()
             # Создаёт context для 5-ти любимых песен
-            context = create_like_playlist(client)
+            liked_context = create_like_playlist(client)
+
+            chart_context = create_chart_playlist(client)
+
+            context = liked_context | chart_context
             return render(request, 'main/main-page.html', context=context)
 
         return render(request, 'main/main-page.html')
@@ -42,24 +50,46 @@ def main_page_view(request):
 
 def create_like_playlist(client):
     tracks = list(client.users_likes_tracks()[:5])
-    track_list = []
+    liked_track_list = []
     for track_obj in tracks[:5]:  # Get first 5 liked tracks
         id = track_obj.id
         track = track_obj.fetch_track()
         title = track.title
-        artist = track.artists[0].name if track.artists else "Unknown Artist"
+        artist = " " + ', '.join(artist.name for artist in track.artists)
         url = "https://music.yandex.ru/track/" + str(id)
 
         img = None
         if track.cover_uri:
             img = f"https://{track.cover_uri.replace('%%', '200x200')}"
 
-        track_list.append({
-            'title': title,
-            'artist': artist,
-            'image': img,
-            'id': id,
-            'url': url
+        liked_track_list.append({
+            'liked_title': title,
+            'liked_artist': artist,
+            'liked_image': img,
+            'liked_url': url
         })
-    context = {"track_list": track_list}
+    context = {"liked_track_list": liked_track_list}
+    return context
+
+def create_chart_playlist(client):
+    CHART_ID = 'world'
+    tracks = client.chart(CHART_ID).chart.tracks[:5]
+    chart_track_list = []
+    for track_short in tracks[:5]:  # Get first 5 chart tracks
+        track, chart = track_short.track, track_short.chart
+        id = track.id
+        title = track.title
+        artist = " " + ', '.join(artist.name for artist in track.artists)
+        url = "https://music.yandex.ru/track/" + str(id)
+
+        img = None
+        if track.cover_uri:
+            img = f"https://{track.cover_uri.replace('%%', '200x200')}"
+        chart_track_list.append({
+            'chart_title': title,
+            'chart_artist': artist,
+            'chart_image': img,
+            'chart_url': url
+        })
+    context = {"chart_track_list": chart_track_list}
     return context

@@ -89,3 +89,9 @@ a:link {
   color: White;
   text-decoration: none;
 }
+
+.tracks {
+    text-align: center;
+    font-size: 25px;
+    margin: 30px auto;
+}

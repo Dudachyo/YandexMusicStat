@@ -28,13 +28,30 @@
             {% endif %}
         </form>
     </div>
+
+    <div class="tracks">Your last liked tracks</div>
     <div class="tracks-container">
-        {% for i in track_list %}
-            <a href="{{ i.url }}" target="_blank"><div class="track-card">
-            <img src="{{ i.image }}">
-            <p class="mar">{{ i.title }}</p>
-            <p class="mar">{{ i.artist }}</p>
-            </div></a>
+        {% for i in liked_track_list %}
+            <a href="{{ i.liked_url }}" target="_blank">
+                <div class="track-card">
+                    <img src="{{ i.liked_image }}">
+                    <p class="mar">{{ i.liked_title }}</p>
+                    <p class="mar">{{ i.liked_artist }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+    <div class="tracks">Top 5 tracks in chart</div>
+    <div class="tracks-container">
+        {% for i in chart_track_list %}
+            <a href="{{ i.chart_url }}" target="_blank">
+                <div class="track-card">
+                    <img src="{{ i.chart_image }}">
+                    <p class="mar">{{ i.chart_title }}</p>
+                    <p class="mar">{{ i.chart_artist }}</p>
+                </div>
+            </a>
         {% endfor %}
     </div>
 </body>
