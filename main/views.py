@@ -38,9 +38,9 @@ def main_page_view(request):
         if saved_token:
             client = Client(saved_token).init()
             # Создаёт context для 5-ти любимых песен
-            liked_context = create_like_playlist(client)
-
-            chart_context = create_chart_playlist(client)
+            liked_context = create_like_playlist(client, 5)
+            # Создаёт context для 5-ти песен в чарте
+            chart_context = create_chart_playlist(client, 5)
 
             context = liked_context | chart_context
             return render(request, 'main/main-page.html', context=context)
@@ -48,8 +48,8 @@ def main_page_view(request):
         return render(request, 'main/main-page.html')
 
 
-def create_like_playlist(client):
-    tracks = list(client.users_likes_tracks()[:5])
+def create_like_playlist(client, count):
+    tracks = list(client.users_likes_tracks()[:count])
     liked_track_list = []
     for track_obj in tracks[:5]:  # Get first 5 liked tracks
         id = track_obj.id
@@ -71,9 +71,9 @@ def create_like_playlist(client):
     context = {"liked_track_list": liked_track_list}
     return context
 
-def create_chart_playlist(client):
+def create_chart_playlist(client, count):
     CHART_ID = 'world'
-    tracks = client.chart(CHART_ID).chart.tracks[:5]
+    tracks = client.chart(CHART_ID).chart.tracks[:count]
     chart_track_list = []
     for track_short in tracks[:5]:  # Get first 5 chart tracks
         track, chart = track_short.track, track_short.chart
