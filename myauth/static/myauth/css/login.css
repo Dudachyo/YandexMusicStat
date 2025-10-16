@@ -1,0 +1,96 @@
+
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+    background-image: url('../img/back.png'); /* Замените на путь к вашему фото свечения */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%; /* Подстройте размер под нужды, чтобы свечение было как на фото */
+    overflow: hidden;
+}
+
+.login-box {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(25, 25, 25, 0.97);
+    width: 366px;
+    height: 420px;
+    text-align: center;
+    color: #fff;
+}
+
+.login-box h1 {
+    margin-top: 30px;
+    margin-bottom: 53px;
+    font-size: 40px;
+    color: #FFFFFF;
+}
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    width: 90%;
+    padding: 10px 0 5px 0;
+    border: none;
+    border-bottom: 4px solid rgba(13, 13, 13, 0.6); /* добавлено solid */
+    margin: 0;
+    background-color: rgba(25, 25, 25, 0.00);
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 32px;
+}
+
+.options {
+    margin: 20px 15px ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.options input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.options a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
+.login-box button {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: #ffd700;
+    border: none;
+    border-radius: 7px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.login-box button:hover {
+    background-color: #ffcc00;
+}
+
+.login-box .register {
+    font-size: 20px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.login-box .register .parag{
+    margin: 10px auto 20px auto;
+}
+
+.login-box .register:hover {
+    text-decoration: underline;
+}
