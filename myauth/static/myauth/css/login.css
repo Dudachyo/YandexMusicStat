@@ -1,6 +1,16 @@
-
+@font-face {
+    font-family: 'Yandex Sans text';
+    src: url('myauth/static/myauth/font/YandexSansText-Medium.eot');
+    src: local('Yandex Sans Display Medium'), local('YandexSansDisplay-Medium'),
+        url('myauth/static/myauth/font/YandexSansText-Medium.woff2') format('woff2'),
+        url('myauth/static/myauth/font/YandexSansText-Medium.woff') format('woff'),
+        url('myauth/static/myauth/font/YandexSansText-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body {
+    font-family: "Yandex Sans Display";
     margin: 0;
     padding: 0;
     display: flex;
@@ -49,11 +59,39 @@ body {
     justify-content: space-between;
     align-items: center;
     font-size: 14px;
-    color: #ccc;
+    color: #FFFFFF;
 }
 
 .options input[type="checkbox"] {
     margin-right: 5px;
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: rgb(4, 3, 3);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+}
+.options input[type="checkbox"]:checked {
+    background-color: rgb(4, 3, 3);
+    border-color: #000000;
+}
+
+.options input[type="checkbox"]:checked::before {
+    content: "✓";
+    position: absolute;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.options .text {
+    vertical-align: middle;
 }
 
 .options a {
