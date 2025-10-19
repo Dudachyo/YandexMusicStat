@@ -12,6 +12,7 @@
         <nav class="nav_cont">
             <img src="{% static 'main/img/img.png' %}" alt="YandexMusic" class="img_logo">
             <p class="title">My Yandex Music Stat</p>
+            <div><a href="{% url "auth-page" %}">Sing up</a></div>
         </nav>
     </header>
     <div class="div_content">
@@ -21,7 +22,7 @@
                 <input type="text" name="token" id="token" class="input-token" placeholder="Введите ТОКЕН" >
             </p>
             <p class="p-token">
-                <button type="submit" class="input-button">Отправить</button>
+                <button type="submit" class="input-button">Send</button>
             </p>
             {% if error %}
                 <p>{{ error }}</p>

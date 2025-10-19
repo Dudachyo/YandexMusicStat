@@ -28,6 +28,18 @@ body{
     align-items: center; /* Выравнивание по вертикали */
     gap: 15px; /* Расстояние между элементами */
 }
+.nav_cont div {
+    margin-left: auto; /* Это переместит кнопку вправо */
+}
+.nav_cont a{
+    font-size: 20px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.nav_cont a:hover{
+    text-decoration: underline;
+}
+
 .div_content{
     text-align: center;
 }

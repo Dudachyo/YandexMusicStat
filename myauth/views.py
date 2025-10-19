@@ -16,7 +16,7 @@ def login_page_view(request):
 
     # GET запрос
     if request.user.is_authenticated:
-        return redirect('login_success')
+        return redirect('profile')
 
     return render(request, 'myauth/Auth.html', {
         'form1': LoginForm(),
@@ -30,7 +30,7 @@ def home(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('main-page')
 
 
 def login_view(request):
@@ -43,7 +43,7 @@ def login_view(request):
         )
         if user:
             login(request, user)
-            return redirect('login_success')
+            return redirect('profile')
     return render(request, 'myauth/Auth.html', {
         'error': 'Email or password is incorrect',
         'form1': LoginForm(),
@@ -67,7 +67,7 @@ def register_view(request):
 
         user = User.objects.create_user(username=username, email=email, password=password)
         login(request, user)
-        return redirect('login_success')
+        return redirect('profile')
 
     return render(request, 'myauth/Auth.html', {
         'error': 'Error',
