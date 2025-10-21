@@ -1,13 +1,13 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+
+{% block Title %}
+    Login
+{% endblock %}
+{% block css %}
     <link rel="stylesheet" href="{% static 'myauth/css/login.css' %}">
-</head>
-<body>
+{% endblock %}
+{% block content %}
     <div class="login-box" id="login-box">
         <h1>Login</h1>
         <form method="post" autocomplete="off">
@@ -58,5 +58,4 @@
         </form>
     </div>
  <script src="{% static 'myauth/js/script.js' %}"></script>
-</body>
-</html>
+{% endblock %}

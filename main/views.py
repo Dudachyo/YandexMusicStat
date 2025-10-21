@@ -18,31 +18,30 @@ def main_page_view(request):
 
             # Инициальзация пользователя
             client = Client(token).init()
-
             # Создаёт context для 5-ти любимых песен
-            liked_context = create_like_playlist(client)
+            # liked_context = create_like_playlist(client , 5)
+            # Создаёт context для 5-ти песен в чарте
+            chart_context = create_chart_playlist(client, 5)
 
-            chart_context = create_chart_playlist(client)
-
-            context = liked_context | chart_context
+            context = chart_context
 
             response = render(request, 'main/main-page.html', context=context)
             response.set_cookie('token', token , max_age=30*24*60*60)
             return response
 
         except:
-            context = {"error": "Ошибка!!! Проверьте ТОКЕН"}
+            context = {"error": "Error!!! invalid token"}
             return render(request, 'main/main-page.html', context=context)
 
     else:
         if saved_token:
             client = Client(saved_token).init()
             # Создаёт context для 5-ти любимых песен
-            liked_context = create_like_playlist(client, 5)
+            # liked_context = create_like_playlist(client, 5)
             # Создаёт context для 5-ти песен в чарте
             chart_context = create_chart_playlist(client, 5)
 
-            context = liked_context | chart_context
+            context = chart_context
             return render(request, 'main/main-page.html', context=context)
 
         return render(request, 'main/main-page.html')

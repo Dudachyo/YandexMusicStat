@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'Yandex Sans Display';
+    src: url('templates/main/font/YandexSansDisplay-Regular.eot');
+    src: local('Yandex Sans Display Regular'), local('YandexSansDisplay-Regular'),
+        url('../font/YandexSansDisplay-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../font/YandexSansDisplay-Regular.woff2') format('woff2'),
+        url('../font/YandexSansDisplay-Regular.woff') format('woff'),
+        url('../font/YandexSansDisplay-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    font-family: "Yandex Sans Display";
+    padding-left: 136px;
+    padding-right: 136px;
+    background-color: #0d0d0d;
+    color: white;
+}
+.title{
+    font-size: 20px;
+}
+.img_logo {
+    width: 63px;
+    height: 63px;
+}
+.nav_cont{
+    display: flex;
+    background-color: rgba(13, 13, 13, 0.7);
+    align-items: center; /* Выравнивание по вертикали */
+    gap: 15px; /* Расстояние между элементами */
+}
+.nav_cont div {
+    margin-left: auto; /* Это переместит кнопку вправо */
+}
+.nav_cont a{
+    font-size: 20px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.nav_cont a:hover{
+    text-decoration: underline;
+}

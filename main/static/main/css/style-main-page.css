@@ -12,33 +12,7 @@
 .title{
     font-size: 50px;
 }
-body{
-    font-family: "Yandex Sans Display";
-    padding-left: 136px;
-    padding-right: 136px;
-    background-color: #0d0d0d;
-    color: white;
-}
-.img_logo {
-    width: 63px;
-    height: 63px;
-}
-.nav_cont{
-    display: flex;
-    align-items: center; /* Выравнивание по вертикали */
-    gap: 15px; /* Расстояние между элементами */
-}
-.nav_cont div {
-    margin-left: auto; /* Это переместит кнопку вправо */
-}
-.nav_cont a{
-    font-size: 20px;
-    color: #FFFFFF;
-    text-decoration: none;
-}
-.nav_cont a:hover{
-    text-decoration: underline;
-}
+
 
 .div_content{
     text-align: center;

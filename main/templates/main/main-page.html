@@ -1,25 +1,20 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" type="text/css" href="../../static/main/css/style-main-page.css"/>
-    <meta charset="UTF-8">
-    <title>Title</title>
+
+{% block Title %}
+    Main page
+{% endblock %}
+
+{% block css %}
     <link rel="stylesheet" href="{% static 'main/css/style-main-page.css' %}">
-</head>
-<body>
-    <header>
-        <nav class="nav_cont">
-            <img src="{% static 'main/img/img.png' %}" alt="YandexMusic" class="img_logo">
-            <p class="title">My Yandex Music Stat</p>
-            <div><a href="{% url "auth-page" %}">Sing up</a></div>
-        </nav>
-    </header>
+{% endblock %}
+
+{% block content %}
     <div class="div_content">
         <form method="post">
             {% csrf_token %}
             <p class="p-token">
-                <input type="text" name="token" id="token" class="input-token" placeholder="Введите ТОКЕН" >
+                <input type="text" name="token" id="token" class="input-token" placeholder="Token" >
             </p>
             <p class="p-token">
                 <button type="submit" class="input-button">Send</button>
@@ -55,5 +50,4 @@
             </a>
         {% endfor %}
     </div>
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {% block Title %} Title {% endblock %}</title>
+    <link rel="stylesheet" href="../static/main/css/base.css">
+    {% block css %}
+
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="nav_cont">
+            <img src="{% static 'main/img/img.png' %}" alt="YandexMusic" class="img_logo">
+            <p class="title">My Yandex Music Stat</p>
+            <div><a href="{% url "auth-page" %}">Sing up</a></div>
+        </nav>
+    </header>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>
