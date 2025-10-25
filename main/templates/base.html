@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title> {% block Title %} Title {% endblock %}</title>
-    <link rel="stylesheet" href="../static/main/css/base.css">
+    <link rel="stylesheet" href="{% static 'main/css/base.css' %}">
     {% block css %}
 
     {% endblock %}
@@ -12,9 +12,15 @@
 <body>
     <header>
         <nav class="nav_cont">
-            <img src="{% static 'main/img/img.png' %}" alt="YandexMusic" class="img_logo">
+            <a href="{% url 'main-page' %}"><img src="{% static 'main/img/img.png' %}" alt="YandexMusic" class="img_logo"></a>
             <p class="title">My Yandex Music Stat</p>
-            <div><a href="{% url "auth-page" %}">Sing up</a></div>
+            <div><a href="{% url "auth-page" %}">
+                {% if request.user.is_authenticated%}
+                    {{ request.user.username }}
+                {% else %}
+                Sing up
+                {% endif %}
+            </a></div>
         </nav>
     </header>
     {% block content %}

@@ -10,5 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/' , include('myauth.urls')),
     path('logout/', logout_view, name='logout'),
-    path('profile/', home, name='profile'),
+    path('profile-token/', profileToken_view, name='profile-token'),
+    path('profile/', redirect_to_profile_view),
+    path('profile/<slug:username>/' , profile_view, name='profile'),
 ]

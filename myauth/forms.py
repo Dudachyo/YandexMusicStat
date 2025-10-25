@@ -21,3 +21,8 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={
         'placeholder': 'Password',
     }), label="Пароль")
+
+class TokenForm(forms.Form):
+    token = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
+        'placeholder': 'Token',
+    }))

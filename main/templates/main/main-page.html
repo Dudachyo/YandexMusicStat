@@ -10,33 +10,6 @@
 {% endblock %}
 
 {% block content %}
-    <div class="div_content">
-        <form method="post">
-            {% csrf_token %}
-            <p class="p-token">
-                <input type="text" name="token" id="token" class="input-token" placeholder="Token" >
-            </p>
-            <p class="p-token">
-                <button type="submit" class="input-button">Send</button>
-            </p>
-            {% if error %}
-                <p>{{ error }}</p>
-            {% endif %}
-        </form>
-    </div>
-
-    <div class="tracks">Your last liked tracks</div>
-    <div class="tracks-container">
-        {% for i in liked_track_list %}
-            <a href="{{ i.liked_url }}" target="_blank">
-                <div class="track-card">
-                    <img src="{{ i.liked_image }}">
-                    <p class="mar">{{ i.liked_title }}</p>
-                    <p class="mar">{{ i.liked_artist }}</p>
-                </div>
-            </a>
-        {% endfor %}
-    </div>
 
     <div class="tracks">Top 5 tracks in chart</div>
     <div class="tracks-container">

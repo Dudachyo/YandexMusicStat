@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'Yandex Sans text';
+    src: url('myauth/static/myauth/font/YandexSansText-Medium.eot');
+    src: local('Yandex Sans Display Medium'), local('YandexSansDisplay-Medium'),
+        url('myauth/static/myauth/font/YandexSansText-Medium.woff2') format('woff2'),
+        url('myauth/static/myauth/font/YandexSansText-Medium.woff') format('woff'),
+        url('myauth/static/myauth/font/YandexSansText-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.profile-conteiner{
+    margin-top: 10px;
+    background-color: rgba(25, 25, 25, 0.99);
+    text-align: center;
+
+}
+.profile-conteiner img{
+    margin-top: 20px;
+    height: 200px;
+    width: 200px;
+}
+
+.profile-conteiner .title{
+    width: 473px;
+    font-family: 'Yandex Sans Text';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 80px;
+    text-align: center;
+    margin: auto;
+}
+.profile-conteiner input[type="text"]{
+    width: 90%;
+    padding: 10px 0 5px 0;
+    border: none;
+    border-bottom: 4px solid rgba(13, 13, 13, 0.6);
+    background-color: rgba(25, 25, 25, 0.00);
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 32px;
+    margin-bottom: auto;
+}
+
+.profile-conteiner button {
+    width: 20%;
+    margin: 50px auto 10px auto;
+    padding: 10px;
+    background-color: #ffd700;
+    border: none;
+    border-radius: 7px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 24px;
+}
+.profile-conteiner h1{
+    margin: 0 auto 10px auto;
+}
+
+
+.login-box button:hover {
+    background-color: #ffcc00;
+}
+
+.title-track .artist-track {
+    font-size: 10px;
+    margin: 0;
+}
+.mar {
+    margin: 0;
+}

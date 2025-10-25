@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block Title %}
+    Profile
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'myauth/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="profile-conteiner">
+        <div class="profile-header-container">
+            <img src="{% static 'myauth/img/images.png' %}" alt="">
+            <h1>Check your stats in Yandex Music</h1>
+        </div>
+    <div class="liked-track-container">Your last liked tracks</div>
+    <div class="tracks-container">
+        {% for i in liked_track_list %}
+            <a href="{{ i.liked_url }}" target="_blank">
+                <div class="track-card">
+                    <img src="{{ i.liked_image }}">
+                    <p class="mar">{{ i.liked_title }}</p>
+                    <p class="mar">{{ i.liked_artist }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+    </div>
+
+
+
+{% endblock %}

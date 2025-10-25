@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block Title %}
+    Token
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'myauth/css/profile-token.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="profile-conteiner">
+        <img src="{% static 'myauth/img/images.png' %}" alt="">
+        <h1 class="title">Last step send your token</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.token }}
+            <button type="submit">Send</button>
+        </form>
+        {% if error %}
+            <h1>Error!!! try one more</h1>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -14,8 +14,6 @@
             {% csrf_token %}
             {{ form1.username }}
             {{ form1.password }}
-{#            <input type="text" placeholder="Login" name="username" required>#}
-{#            <input type="password" placeholder="Password" name="password" required>#}
             <div class="options">
                 <div>
                      <input type="checkbox">
@@ -34,6 +32,8 @@
             </a>
         </form>
     </div>
+
+    {# REGISTER #}
     <div class="register-box" id="register-box">
         <h1>Register</h1>
         <form method="post" autocomplete="off">
@@ -41,11 +41,6 @@
             {{ form2.username }}
             {{ form2.email }}
             {{ form2.password }}
-
-
-{#            <input type="text" placeholder="Login" name="username" required>#}
-{#            <input type="text" placeholder="Email" name="email" required>#}
-{#            <input type="password" placeholder="Password" name="password" required>#}
             <button type="submit" name="action" value="register">Register</button>
             {% if error %}
                 <div style="color: #ffd700; font-size: 20px">

@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Yandex Sans Display';
-    src: url('templates/main/font/YandexSansDisplay-Regular.eot');
+    src: url('../font/YandexSansDisplay-Regular.eot');
     src: local('Yandex Sans Display Regular'), local('YandexSansDisplay-Regular'),
         url('../font/YandexSansDisplay-Regular.eot?#iefix') format('embedded-opentype'),
         url('../font/YandexSansDisplay-Regular.woff2') format('woff2'),
@@ -17,6 +17,7 @@ body{
     background-color: #0d0d0d;
     color: white;
 }
+
 .title{
     font-size: 20px;
 }
@@ -26,12 +27,14 @@ body{
 }
 .nav_cont{
     display: flex;
-    background-color: rgba(13, 13, 13, 0.7);
+    background-color: rgba(25, 25, 25, 0.99);
     align-items: center; /* Выравнивание по вертикали */
     gap: 15px; /* Расстояние между элементами */
+    border-radius: 15px;
 }
 .nav_cont div {
-    margin-left: auto; /* Это переместит кнопку вправо */
+    margin-left: auto;
+    margin-right: 15px
 }
 .nav_cont a{
     font-size: 20px;
