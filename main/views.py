@@ -35,7 +35,7 @@ def main_page_view(request):
 
     else:
         if saved_token:
-            client = Client(saved_token).init()
+            client = Client(request.user.last_name).init()
             # Создаёт context для 5-ти любимых песен
             # liked_context = create_like_playlist(client, 5)
             # Создаёт context для 5-ти песен в чарте

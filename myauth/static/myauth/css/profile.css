@@ -1,7 +1,6 @@
 .profile-conteiner{
     margin-top: 10px;
     background-color: rgba(25, 25, 25, 0.99);
-    text-align: center;
 
 }
 
@@ -17,7 +16,33 @@
 .profile-header-container h1{
     font-size: 64px;
     width: 700px;
+    text-align: center;
 }
+.profile-conteiner .username-text{
+    margin-left: 28px;
+    width: 200px;
+    text-align: center;
+    font-size: 20px;
+}
+.profile-conteiner .edit-button{
+    width: 100px;
+    margin-left: 80px;
+    text-align: center;
+    font-size: 20px;
+    background-color: #FED42B;
+    border-radius: 5px;
+    color: black;
+}
+.edit-button a:visited {
+    color: black;
+    text-decoration: none;
+}
+a:link {
+  color: black;
+  text-decoration: none;
+}
+
+
 .liked-track-container{
     text-align: center;
     font-size: 20px;

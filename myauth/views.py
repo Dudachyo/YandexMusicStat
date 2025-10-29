@@ -50,23 +50,24 @@ def profileToken_view(request):
         return redirect('auth-page')
 
 def profile_view(request , username):
-    user = User.objects.get(username=username)
+    try:
+        user = User.objects.get(username=username)
+    except:
+        return HttpResponse("Ops page not found")
     if user.last_name:
         token = user.last_name
         client = Client(token).init()
         liked_context = create_like_playlist(client, 5)
 
-        return render(request, 'myauth/profile.html', context=liked_context| {'username': user})
+        return render(request, 'myauth/profile.html', context=liked_context| {'user': user})
     else:
         return HttpResponse("Ops page not found")
-
 
 def redirect_to_profile_view(request):
     return redirect('profile', request.user.username)
 def logout_view(request):
     logout(request)
     return redirect('main-page')
-
 
 def login_view(request):
     form = LoginForm(request.POST)
@@ -84,7 +85,6 @@ def login_view(request):
         'form1': LoginForm(),
         'form2': RegisterForm()
     })
-
 
 def register_view(request):
     form = RegisterForm(request.POST)
@@ -135,3 +135,8 @@ def create_like_playlist(client, count):
 
 def create_liked_artist(client, count):
     pass
+
+def page_view(request , username):
+    return render(request, 'myauth/profile-edit.html', {})
+
+
