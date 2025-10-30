@@ -12,6 +12,6 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('profile-token/', profileToken_view, name='profile-token'),
     path('profile/', redirect_to_profile_view),
-    path('profile/<slug:username>/' , profile_view, name='profile'),
-    path('profile/<slug:username>/edit/', page_view, name='profile-edit'),
+    path('profile/user/<slug:username>/' , profile_view, name='profile'),
+    path('profile/edit/', page_view, name='profile-edit'),
 ]

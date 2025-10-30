@@ -18,7 +18,10 @@
             <h1>Check your stats in Yandex Music</h1>
         </div>
     <div class="username-text" >{{ user.username }}</div>
-    <div class="edit-button"><a href="{% url 'profile-edit' request.user.username %}">Edit profile</a></div>
+    {% if request.user.username == user.username%}
+    	<div class="edit-button"><a href="{% url 'profile-edit'%}">Edit profile</a></div>
+    {% endif %}
+
 
     <div class="liked-track-container">Your last liked tracks</div>
     <div class="tracks-container">

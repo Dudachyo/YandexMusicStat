@@ -1,11 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render , redirect
 from yandex_music import Client
-
+from django.contrib.auth.models import User
 def main_page_view(request):
 
-    saved_token = request.COOKIES.get('token')
-
+    if request.user.is_authenticated:
+        pass
     if request.method == "POST":
         try:
             # Получаем токен от пользователя
@@ -34,15 +34,15 @@ def main_page_view(request):
             return render(request, 'main/main-page.html', context=context)
 
     else:
-        if saved_token:
-            client = Client(request.user.last_name).init()
-            # Создаёт context для 5-ти любимых песен
-            # liked_context = create_like_playlist(client, 5)
-            # Создаёт context для 5-ти песен в чарте
-            chart_context = create_chart_playlist(client, 5)
-
-            context = chart_context
-            return render(request, 'main/main-page.html', context=context)
+        # if token:
+        #     client = Client(request.user.last_name).init()
+        #     # Создаёт context для 5-ти любимых песен
+        #     # liked_context = create_like_playlist(client, 5)
+        #     # Создаёт context для 5-ти песен в чарте
+        #     chart_context = create_chart_playlist(client, 5)
+        #
+        #     context = chart_context
+        #     return render(request, 'main/main-page.html', context=context)
 
         return render(request, 'main/main-page.html')
 

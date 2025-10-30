@@ -35,14 +35,13 @@ def profileToken_view(request):
             except:
                 return render(request, 'myauth/profile-token.html', context={'form': form , 'error': True})
             user = request.user
-            user.last_name = form.cleaned_data['token']
-            user.save()
+            user.userprofile.save_token(form.cleaned_data['token'])
             return redirect('profile' , username=request.user.username)
         else:
             return render(request, 'myauth/profile-token.html', context={'form': form , 'error': True})
 
     if request.user.is_authenticated:
-        if request.user.last_name:
+        if request.user.userprofile.has_token():
             return redirect('profile', username=request.user.username)
         form = TokenForm()
         return render(request, 'myauth/profile-token.html', {'form': form , 'user': request.user})
@@ -54,14 +53,25 @@ def profile_view(request , username):
         user = User.objects.get(username=username)
     except:
         return HttpResponse("Ops page not found")
-    if user.last_name:
-        token = user.last_name
-        client = Client(token).init()
-        liked_context = create_like_playlist(client, 5)
 
-        return render(request, 'myauth/profile.html', context=liked_context| {'user': user})
+    if request.user.username == username:
+        if user.userprofile.has_token():
+            token = user.userprofile.get_token()
+            client = Client(token).init()
+            liked_context = create_like_playlist(client, 5)
+
+            return render(request, 'myauth/profile.html', context=liked_context | {'user': user})
+        else:
+            return redirect('profile-token')
     else:
-        return HttpResponse("Ops page not found")
+        if user.userprofile.hidden:
+            return HttpResponse("User is hidden")
+        else:
+            token = user.userprofile.get_token()
+            client = Client(token).init()
+            liked_context = create_like_playlist(client, 5)
+
+            return render(request, 'myauth/profile.html', context=liked_context | {'user': user})
 
 def redirect_to_profile_view(request):
     return redirect('profile', request.user.username)
@@ -136,7 +146,7 @@ def create_like_playlist(client, count):
 def create_liked_artist(client, count):
     pass
 
-def page_view(request , username):
+def page_view(request):
     return render(request, 'myauth/profile-edit.html', {})
 
 
