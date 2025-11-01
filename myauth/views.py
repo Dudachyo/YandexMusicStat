@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import LoginForm, RegisterForm , TokenForm
+from .forms import LoginForm, RegisterForm , TokenForm , UserForm
 from yandex_music import Client
 
 
@@ -146,7 +146,32 @@ def create_like_playlist(client, count):
 def create_liked_artist(client, count):
     pass
 
-def page_view(request):
-    return render(request, 'myauth/profile-edit.html', {})
-
-
+def profile_edit_view(request):
+    if request.method == 'GET':
+        form = UserForm()
+        form.fields['username'].widget.attrs['placeholder'] = request.user.username
+        form.fields['email'].widget.attrs['placeholder'] = request.user.email
+        form.fields['bio'].widget.attrs['placeholder'] = request.user.userprofile.bio
+        return render(request, 'myauth/profile-edit.html', {'form': form , 'error': True})
+    elif request.method == 'POST':
+        form = UserForm(request.POST)
+        form.fields['username'].widget.attrs['placeholder'] = request.user.username
+        form.fields['email'].widget.attrs['placeholder'] = request.user.email
+        form.fields['bio'].widget.attrs['placeholder'] = request.user.userprofile.bio
+        user = request.user
+        if form.is_valid():
+            avatar = form.cleaned_data['avatar']
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            bio = form.cleaned_data['bio']
+            if username:
+                if User.objects.filter(username=username).exists():
+                    return render(request, 'myauth/profile-edit.html', {'form': form , 'error': True})
+            user.username = username
+            if email: user.email = email
+            if bio: user.userprofile.bio = bio
+            if avatar:user.userprofile.avatar = avatar
+            user.save()
+            user.userprofile.save()
+            return redirect('profile', username=request.user.username)
+        return render(request, 'myauth/profile-edit.html', {'form': form , 'error': True})

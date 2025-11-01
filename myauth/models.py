@@ -4,7 +4,7 @@ from .utils import TokenEncryption
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='avatars', null=True, blank=True)
+    avatar = models.ImageField(upload_to='avatars/%Y/%m/%d/', default="avatars/images.png" , null=True, blank=True,)
     encrypted_token = models.TextField(blank=True,null=True,verbose_name='encrypted_token')
     bio = models.TextField(null=True, blank=True,verbose_name='bio')
     hidden = models.BooleanField(default=False,verbose_name='hidden')

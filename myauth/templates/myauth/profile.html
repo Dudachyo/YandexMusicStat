@@ -14,7 +14,11 @@
 {% block content %}
     <div class="profile-conteiner">
         <div class="profile-header-container">
-            <img src="{% static 'myauth/img/images.png' %}" alt="">
+            {% if user.userprofile.avatar %}
+                <img src="{{ user.userprofile.avatar.url }}" width="200" height="200" alt="{{ user.username }}">
+            {% else %}
+                <img src="{% static 'myauth/img/images.png' %}" alt="Default avatar">
+            {% endif %}
             <h1>Check your stats in Yandex Music</h1>
         </div>
     <div class="username-text" >{{ user.username }}</div>
