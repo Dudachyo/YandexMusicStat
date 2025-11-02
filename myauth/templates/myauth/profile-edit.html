@@ -16,7 +16,7 @@
         <div class="header">
             <h1>Edit Profile</h1>
         </div>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
         <div class="avatar-upload">
                 <label for="id_avatar" class="avatar-preview" id="avatarPreview">
@@ -29,18 +29,22 @@
         <div class="form-section">
 
             <div class="form-group">
-                <label for="username">Имя пользователя</label>
+                <label for="username">Username</label>
                 {{ form.username }}
             </div>
 
             <div class="form-group">
-                <label for="email">Электронная почта</label>
+                <label for="email">Email</label>
                 {{ form.email }}
             </div>
 
             <div class="form-group">
-                <label for="bio">О себе</label>
+                <label for="bio">Bio</label>
                 {{ form.bio }}
+            </div>
+            <div>
+                <label for="hidden">Hide profile?</label>
+                {{ form.hidden }}
             </div>
         <div class="button-group">
             <button class="btn btn-secondary">Отмена</button>

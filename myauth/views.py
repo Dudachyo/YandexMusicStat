@@ -1,4 +1,3 @@
-from django.contrib.admindocs.views import user_has_model_view_permission
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -23,7 +22,6 @@ def login_page_view(request):
         'form1': LoginForm(),
         'form2': RegisterForm()
     })
-
 
 def profileToken_view(request):
     if request.method == "POST":
@@ -75,9 +73,11 @@ def profile_view(request , username):
 
 def redirect_to_profile_view(request):
     return redirect('profile', request.user.username)
+
 def logout_view(request):
     logout(request)
     return redirect('main-page')
+
 
 def login_view(request):
     form = LoginForm(request.POST)
@@ -95,6 +95,7 @@ def login_view(request):
         'form1': LoginForm(),
         'form2': RegisterForm()
     })
+
 
 def register_view(request):
     form = RegisterForm(request.POST)
@@ -120,6 +121,61 @@ def register_view(request):
         'form2': RegisterForm()
     })
 
+
+def profile_edit_view(request):
+    if request.method == 'GET':
+        form = UserForm()
+
+        form.fields['username'].widget.attrs['placeholder'] = request.user.username
+        form.fields['email'].widget.attrs['placeholder'] = request.user.email
+        form.fields['bio'].widget.attrs['placeholder'] = request.user.userprofile.bio
+        if request.user.userprofile.hidden == True:
+            form.fields['hidden'].widget.attrs['checked'] = 'checked'
+
+        return render(request, 'myauth/profile-edit.html', {'form': form})
+
+    elif request.method == 'POST':
+        form = UserForm(request.POST, request.FILES)
+
+        form.fields['username'].widget.attrs['placeholder'] = request.user.username
+        form.fields['email'].widget.attrs['placeholder'] = request.user.email
+        form.fields['bio'].widget.attrs['placeholder'] = request.user.userprofile.bio
+        if request.user.userprofile.hidden == True:
+            form.fields['hidden'].widget.attrs['checked'] = 'checked'
+
+        user = request.user
+        if form.is_valid():
+            avatar = form.cleaned_data.get('avatar')
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            bio = form.cleaned_data.get('bio')
+            hidden = form.cleaned_data.get('hidden')
+
+            if username:
+                # Проверяем, что username не занят другим пользователем
+                if User.objects.filter(username=username).exclude(pk=user.pk).exists():
+                    return render(request, 'myauth/profile-edit.html', {'form': form, 'error': True})
+                user.username = username
+
+            if email:
+                user.email = email
+
+            if bio:
+                user.userprofile.bio = bio
+
+            # ВАЖНО: Сохраняем аватар
+            if avatar:
+                print("------------")
+                user.userprofile.avatar = avatar
+
+            user.userprofile.hidden = hidden
+            user.save()
+            user.userprofile.save()
+
+            return redirect('profile', username=user.username)
+
+        return render(request, 'myauth/profile-edit.html', {'form': form, 'error': True})
+
 def create_like_playlist(client, count):
     tracks = list(client.users_likes_tracks()[:count])
     liked_track_list = []
@@ -142,36 +198,3 @@ def create_like_playlist(client, count):
         })
     context = {"liked_track_list": liked_track_list}
     return context
-
-def create_liked_artist(client, count):
-    pass
-
-def profile_edit_view(request):
-    if request.method == 'GET':
-        form = UserForm()
-        form.fields['username'].widget.attrs['placeholder'] = request.user.username
-        form.fields['email'].widget.attrs['placeholder'] = request.user.email
-        form.fields['bio'].widget.attrs['placeholder'] = request.user.userprofile.bio
-        return render(request, 'myauth/profile-edit.html', {'form': form , 'error': True})
-    elif request.method == 'POST':
-        form = UserForm(request.POST)
-        form.fields['username'].widget.attrs['placeholder'] = request.user.username
-        form.fields['email'].widget.attrs['placeholder'] = request.user.email
-        form.fields['bio'].widget.attrs['placeholder'] = request.user.userprofile.bio
-        user = request.user
-        if form.is_valid():
-            avatar = form.cleaned_data['avatar']
-            username = form.cleaned_data['username']
-            email = form.cleaned_data['email']
-            bio = form.cleaned_data['bio']
-            if username:
-                if User.objects.filter(username=username).exists():
-                    return render(request, 'myauth/profile-edit.html', {'form': form , 'error': True})
-            user.username = username
-            if email: user.email = email
-            if bio: user.userprofile.bio = bio
-            if avatar:user.userprofile.avatar = avatar
-            user.save()
-            user.userprofile.save()
-            return redirect('profile', username=request.user.username)
-        return render(request, 'myauth/profile-edit.html', {'form': form , 'error': True})

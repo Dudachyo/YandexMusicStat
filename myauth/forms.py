@@ -46,4 +46,6 @@ class UserForm(forms.Form):
         'class': 'form-control',
         'id': 'bio',
     }))
+    hidden = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={
 
+    }))
